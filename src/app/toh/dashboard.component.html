@@ -1,0 +1,15 @@
+<h3 [style.font-size.px]="fontSizePx">
+  Top Heroes <my-sizer [(size)]="fontSizePx"></my-sizer>
+</h3>
+
+<div class="grid grid-pad">
+  <!-- TODO show loading icon while heroes data not available -->
+  <ng-container *ngIf="heroes$ | async as heroes">
+    <div *ngFor="let hero of heroes" (click)="gotoDetail(hero)" class="col-1-4">
+      <div class="module hero">
+        <h4>{{hero.name}}</h4>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<my-hero-search></my-hero-search>

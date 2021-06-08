@@ -1,0 +1,26 @@
+.mainbox {
+  background-color: #95c2de;
+  margin: auto;
+  height: 300px;
+  width: 300px;
+  position: relative;
+}
+
+.msg {
+  text-align: center;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.6rem;
+  position:absolute;
+  left: 16%;
+  top: 25%;
+  width: 75%;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  text-decoration: underline;
+}

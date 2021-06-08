@@ -1,0 +1,49 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div *ngFor="let control of questionControls" class="form-row">
+      <ng-container
+          [ngTemplateOutlet]="question"
+          [ngTemplateOutletContext]="{
+            question: control.question,
+            control: control.control
+          }">
+      </ng-container>
+    </div>
+
+    <div class="form-row">
+      <button type="submit" [disabled]="form.invalid">Save</button>
+    </div>
+  </form>
+
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad | json}}
+  </div>
+</div>
+
+<ng-template #question let-question="question" let-control="control">
+  <label [attr.for]="question.key">{{question.label}}</label>
+
+  <div>
+    <ng-container *ngIf="isOpenQuestion(question)">
+      <input [formControl]="control"
+      [id]="question.key" [type]="question.type">
+    </ng-container>
+
+    <ng-container *ngIf="isSingleSelectQuestion(question)">
+      <select [id]="question.key"  [formControl]="control">
+        <option *ngFor="let opt of question.options"
+        [value]="opt.key">{{opt.value}}</option>
+      </select>
+    </ng-container>
+  </div>
+
+  <ng-container *ngIf="shouldShowErrors(control)">
+    <div class="errorMessage" *ngIf="control.errors.required">
+      {{question.label}} is required
+    </div>
+    <div class="errorMessage" *ngIf="control.errors.email">
+      {{question.label}} must be a valid email
+    </div>
+  </ng-container>
+
+</ng-template>

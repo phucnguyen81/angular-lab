@@ -1,0 +1,9 @@
+input[text] {
+  color: #333;
+  font-family: Cambria, Georgia, serif;
+}
+input[type="text"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: .5rem;
+}

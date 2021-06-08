@@ -1,0 +1,43 @@
+<ng-container *ngIf="(control.changes | async) as view"
+  [ngTemplateOutlet]="heroDetails"
+  [ngTemplateOutletContext]="{
+    $implicit: control.heroControl,
+    hero: control.getHero(),
+    nameControl: control.nameControl,
+    navigated: control.getNavigated(),
+    inViewMode: control.inViewMode()
+  }">
+</ng-container>
+
+<ng-template #heroDetails
+      let-form
+      let-hero="hero"
+      let-inViewMode="inViewMode"
+      let-navigated="navigated"
+      let-nameControl="nameControl">
+  <h2>{{hero.name}} details!</h2>
+  <ng-container
+      [ngTemplateOutlet]="errorMessages"
+      [ngTemplateOutletContext]="{ $implicit: form }">
+  </ng-container>
+  <div>
+    <label>ID: </label>{{hero.id}}</div>
+  <div [class.cross-validation-error]="shouldShowErrors(form)">
+    <label for="name">Name: </label>
+    <input id="name" required [formControl]="nameControl" placeholder="name" />
+    <ng-container
+        [ngTemplateOutlet]="errorMessages"
+        [ngTemplateOutletContext]="{ $implicit: nameControl }">
+    </ng-container>
+  </div>
+  <button id="go-back" *ngIf="navigated" (click)="goBack()">Back</button>
+  <button id="save-hero" *myUnless="inViewMode" (click)="saveHero()">Save</button>
+</ng-template>
+
+<ng-template #errorMessages let-control>
+  <ng-container *ngIf="shouldShowErrors(control)" class="alert alert-danger">
+    <div *ngFor="let error of getErrors(control)">
+      {{ error.message }}.
+    </div>
+  </ng-container>
+</ng-template>

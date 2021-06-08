@@ -1,0 +1,10 @@
+<h1>Reactive Forms</h1>
+
+<nav>
+  <a (click)="setNameEditor()">Name Editor</a>
+  <a (click)="setProfileEditor()">Profile Editor</a>
+</nav>
+
+<my-name-editor *ngIf="showNameEditor"></my-name-editor>
+
+<my-profile-editor *ngIf="showProfileEditor"></my-profile-editor>
