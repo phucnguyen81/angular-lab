@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -31,10 +32,12 @@ import { HeroesComponent } from './toh/heroes.component';
 import { TohComponent } from './toh/toh.component';
 
 import { ReactiveFormModule } from './reactive-form/reactive-form.module';
-
 import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
+import { AnimeModule } from './anime/anime.module';
+
 
 const imports: any[] = [
+  BrowserAnimationsModule,
   BrowserModule,
   FormsModule,
   ReactiveFormsModule,
@@ -49,6 +52,7 @@ const imports: any[] = [
     })
   ) : [],
   DynamicFormModule,
+  AnimeModule,
 ];
 
 const apiServiceProvider = {

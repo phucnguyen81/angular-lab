@@ -15,6 +15,8 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 import { DemoComponent } from './dynamic-form/demo.component';
 
+import { OpenCloseComponent } from './anime/open-close.component';
+
 const routes: Routes = [
   {
     path: 'toh', component: TohComponent,
@@ -43,6 +45,10 @@ const routes: Routes = [
   {
     path: 'dynamic-form', component: DemoComponent,
     data: { title: 'Dynamic Form' }
+  },
+  {
+    path: 'animation', component: OpenCloseComponent,
+    data: { title: 'Animation' }
   },
   {
     path: '', component: HomeComponent, pathMatch: 'full',
